@@ -6,7 +6,8 @@ const app = express()
 
 //Connect database
 connectDB()
-
+//Init Middleware
+app.use(express.json({ extended: false }))
 app.get("/", (req, res) => res.json({ msg: "Welcome to Contact Keeper API" }))
 
 //Define Routes
