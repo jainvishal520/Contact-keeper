@@ -3,7 +3,7 @@
 const mongoose = require("mongoose")
 const config = require("config")
 const db = config.get("mongoURI")
-
+mongoose.Promise = global.Promise
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
@@ -14,7 +14,7 @@ const connectDB = async () => {
     })
     console.log("MongoDB connected")
   } catch (error) {
-    console.error(err.message)
+    console.error(error.message)
     process.exit(1)
   }
 }
