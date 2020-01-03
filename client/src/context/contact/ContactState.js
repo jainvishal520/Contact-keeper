@@ -1,6 +1,12 @@
 import React, { useReducer } from 'react';
 import uuid from 'uuid';
-import { ADD_CONTACT, DELETE_CONTACT, SET_CURRENT } from '../types';
+import {
+  ADD_CONTACT,
+  DELETE_CONTACT,
+  SET_CURRENT,
+  CLEAR_CURRENT,
+  UPDATE_CONTACT
+} from '../types';
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
 // import { ADD_CONTACT, CLEAR_CURRENT, DELETE_CONTACT, SET_ALERT, SET_CURRENT, UPDATE_CONTACT, CLEAR_FILTER, FILTER_CONTACTS } from '../types';
@@ -47,11 +53,24 @@ const ContactState = props => {
     dispatch({ type: DELETE_CONTACT, payload: id });
   };
 
-  // Edit Contact
-  const setCurrent = id => {
-    dispatch({ type: SET_CURRENT, payload: id });
+  // Set current Contact
+  const setCurrent = contact => {
+    dispatch({ type: SET_CURRENT, payload: contact });
   };
 
+  // Clear Current contact
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT });
+  };
+
+  // Update Contact
+  const updateContact = contact => {
+    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  };
+
+  // Filter Contacts
+
+  // Clear Filter
   return (
     <ContactContext.Provider
       value={{
@@ -59,7 +78,9 @@ const ContactState = props => {
         current: state.current,
         addContact,
         deleteContact,
-        setCurrent
+        setCurrent,
+        clearCurrent,
+        updateContact
       }}
     >
       {props.children}
