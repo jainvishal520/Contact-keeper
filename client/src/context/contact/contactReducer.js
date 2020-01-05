@@ -54,7 +54,7 @@ export default (state, action) => {
     case CLEAR_FILTER:
       return {
         ...state,
-        filtered_contacts: null
+        filteredContacts: null
       };
 
     default:
